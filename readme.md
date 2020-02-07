@@ -1,27 +1,35 @@
-# Laravel PHP Framework
+# Hobby Forecaster
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Pre-requisite
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Setup tested against Docker v19.03.5 and docker-compose v1.25.2. You have to have compatible versions.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Install
 
-## Official Documentation
+We first need to copy the `.env.example` file into our own `.env` file. This file will not be checked into version control.
+```
+cp .env.example .env
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+To install all required project dependencies and build docker images, run
+```
+make install
+```
 
-## Contributing
+Then, we need spin up docker images:
+```
+make up
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+After that, just a little need to be done, setup Laravel
+```
+make setup_laravel
+```
+Note: the command above should be run after `make up` eg we need the app image up and running to invoke some commands _within_ the image.
 
-## Security Vulnerabilities
+## Development
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+For development you may just run `make up`. Then you'll be ready to go - write php, js, css code and it will available at [http://localhost:8080/](http://localhost:8080/).
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## PS
+All actions was done on macOS 10.15.2. If you have any issues running this repo, please create an issue [here](https://github.com/jaxxreal/hobby-forecaster/issues/new).
